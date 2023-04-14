@@ -14,7 +14,14 @@
             
             <label for="tn">Topic_name</label>
             
-            <input type="text" name="tn" id="tn"><br>
+            <select name="tn" id="tn">
+                {% for to in topics %}
+                    <option value="{{to}}">{{to.topic_name}}</option>
+                {% endfor %}
+
+            </select>
+            
+            <br>
 
 
             <label for="n">Name</label>

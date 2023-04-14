@@ -12,13 +12,25 @@
         <form method="POST">
         {% csrf_token %}
 
-        <label for="tn">Topic_name</label>
-        <input type="text" name="tn" id="tn"><br>
+        
         <label for="n">Name</label>
-        <input type="text" name="n" id="n"><br>
-        <label for="">Author</label>
+
+
+        <select name="n" id="n">
+            {% for wo in webpages %}
+
+            <option value="{{wo}}">{{wo.name}}</option>
+
+            {% endfor %}
+            
+        
+        </select><br>
+
+
+
+        <label for="a">Author</label>
         <input type="text" name="a" id="a"><br>
-        <label for="">Date</label>
+        <label for="d">Date</label>
         <input type="date" name="d" id="d"><br><br>
 
         <input type="submit" value="insert_access">

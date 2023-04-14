@@ -5,7 +5,7 @@ from app.models import *
 from django.http import HttpResponse
 
 def insert_topic(request):
-
+    
     if request.method=="POST":
         tn=request.POST['tn']
         TO=Topic.objects.get_or_create(topic_name=tn)[0]
@@ -18,11 +18,13 @@ def insert_topic(request):
 
 
 def insert_webpage(request):
+
+    LOT=Topic.objects.all()
+    d={'topics': LOT}
     
     if request.method=="POST":
         tn=request.POST['tn']
         TO=Topic.objects.get(topic_name=tn)
-        # TO.save()
 
         n=request.POST['n']
         e=request.POST['e']
@@ -32,19 +34,18 @@ def insert_webpage(request):
 
         return HttpResponse('Webpage inserted sucessfully')
 
-    return render(request, 'insert_webpage.html')
+    return render(request, 'insert_webpage.html', d)
 
 
 def insert_access(request):
 
+    LOW=Webpage.objects.all()
+    d={'webpages': LOW}
+
     if request.method=="POST":
-        tn=request.POST['tn']
-        TO=Topic.objects.get(topic_name=tn)
-        # TO.save()
 
         n=request.POST['n']
         WO=Webpage.objects.get(name=n)
-        # WO.save()
 
         a=request.POST['a']
         d=request.POST['d']
@@ -54,4 +55,4 @@ def insert_access(request):
         return HttpResponse('AccessRecord inserted sucessfully')
     
 
-    return render(request, 'insert_access.html')
+    return render(request, 'insert_access.html', d)
