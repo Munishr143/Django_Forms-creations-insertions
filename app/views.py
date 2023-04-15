@@ -56,3 +56,32 @@ def insert_access(request):
     
 
     return render(request, 'insert_access.html', d)
+
+
+def retrieve_data(request):
+    LOT=Topic.objects.all()
+    d={'topics': LOT}
+    if request.method=='POST':
+        r_data=request.POST.getlist('tn')
+        # print(r_data)
+        webquery=Webpage.objects.none()
+        for i in r_data:
+            webquery=webquery|Webpage.objects.filter(topic_name=i)
+            d1={'webpages':webquery}
+        return render(request, 'display_webpage.html', d1)
+
+
+    return render(request, 'retrieve_data.html', d)
+
+def checkbox(request):
+    LOT=Topic.objects.all()
+    d={'topics': LOT}
+    
+    return render(request, 'checkbox.html', d)
+
+def radio(request):
+    LOT=Topic.objects.all()
+    d={'topics': LOT}
+    
+    return render(request, 'radio.html', d)
+
