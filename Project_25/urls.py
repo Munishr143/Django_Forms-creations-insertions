@@ -24,5 +24,7 @@ urlpatterns = [
     path('insert_access/', insert_access, name='insert_access'),
     path('retrieve_data/', retrieve_data, name='retrieve_data'),
     path('checkbox/', checkbox, name='checkbox'),
-    path('radio/', radio, name='radio')
+    path('radio/', radio, name='radio'),
+    path('update_webpage/', update_webpage, name='update_webpage'),
+    path('delete_data/', delete_data, name='delete_data'),
 ]

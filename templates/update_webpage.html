@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpage</title>
+</head>
+<body>
+    <center>
+        <form method="POST">
+            {% csrf_token %}
+            <h1>Updating the Webpage</h1>
+            
+            <label for="tn">Topic_name</label>
+            
+            <select name="tn" id="tn">
+                {% for to in topics %}
+                    <option value="{{to}}">{{to.topic_name}}</option>
+                {% endfor %}
+
+            </select>
+            
+            <br>
+
+
+            <label for="n">Name</label>
+            <input type="text" name="n" id="n"><br>
+            <label for="e">Email</label>
+            <input type="email" name="e" id="e"><br>
+            <label for="u">Url</label>
+            <input type="text" name="u" id="u"><br>
+            <input type="submit" value="update_webpage">
+
+        </form>
+    </center>
+    
+</body>
+</html>

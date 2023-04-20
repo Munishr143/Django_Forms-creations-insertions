@@ -67,7 +67,7 @@ def retrieve_data(request):
         webquery=Webpage.objects.none()
         for i in r_data:
             webquery=webquery|Webpage.objects.filter(topic_name=i)
-            d1={'webpages':webquery}
+        d1={'webpages':webquery}
         return render(request, 'display_webpage.html', d1)
 
 
@@ -84,4 +84,40 @@ def radio(request):
     d={'topics': LOT}
     
     return render(request, 'radio.html', d)
+
+def update_webpage(request):
+    LOT=Topic.objects.all()
+    d={'webpages': Webpage.objects.all(), 'topics': LOT}
+
+    if request.method=="POST":
+        tn=request.POST['tn']
+        TO=Topic.objects.get(topic_name=tn)
+
+        n=request.POST['n']
+        e=request.POST['e']
+        u=request.POST['u']
+        Webpage.objects.filter(name=n).update(topic_name=TO, email=e, url=u)
+        LOW=Webpage.objects.all()
+        d1={'webpages':LOW}
+
+        return render(request, 'display_webpage.html', d1)
+
+    return render(request, 'update_webpage.html', d)
+
+
+def delete_data(request):
+    d={'webpages': Webpage.objects.all()}
+
+    if request.method=="POST":
+        
+        n=request.POST['n']
+        Webpage.objects.filter(name=n).delete()
+        LOW=Webpage.objects.all()
+        d1={'webpages':LOW}
+
+        return render(request, 'display_webpage.html', d1)
+
+
+    return render(request, 'delete_Web.html', d)
+
 
